@@ -1,5 +1,8 @@
 opt?=
 
+install:
+	python3 -m pip install --user pipenv
+	pipenv install
 
 run:
 	pipenv run python manage.py runserver
