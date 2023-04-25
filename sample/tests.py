@@ -34,6 +34,7 @@ class TestByName(TestCase):
         france_by_code.save()
 
         france_by_name = NamedCountryList(name="list2", countries=["France"])
+        breakpoint()
         france_by_name.save()
 
         assert france_by_code.countries[0].name == france_by_name.countries[0].name
@@ -63,3 +64,12 @@ def cleaner(value):
     else:
         return name2two[value]
     raise ValueError
+
+
+pdb_snippet = """
+(Pdb) fields.CountryField(multiple=True).validate(['FR'], france_by_name)
+(Pdb) fields.CountryField(multiple=True).validate(['FWW'], france_by_name)
+*** django.core.exceptions.ValidationError: ["Value 'FWW' is not a valid choice."]
+(Pdb) fields.CountryField(multiple=True).validate(['France'], france_by_name)
+*** django.core.exceptions.ValidationError: ["Value 'France' is not a valid choice."]
+"""
