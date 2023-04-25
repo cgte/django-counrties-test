@@ -50,3 +50,16 @@ class TestByName(TestCase):
         assert france_hack_name.countries[0].name == france_by_code.countries[0].name
 
         assert france_hack_name.countries[0].flag == france_by_code.countries[0].flag
+
+    def test_cleaner(self):
+        assert cleaner("FR") == cleaner("FRA") == cleaner("France") == "FR"
+
+
+def cleaner(value):
+    if len(value) == 3:
+        return three2two[value]
+    if len(value) == 2 and value in countries:
+        return value
+    else:
+        return name2two[value]
+    raise ValueError
