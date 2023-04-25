@@ -1,3 +1,6 @@
+opt?=
+
+
 run:
 	pipenv run python manage.py runserver
 
@@ -12,5 +15,5 @@ test:
 	pipenv run python manage.py test -v2
 
 pytest:
-	pipenv run python -m pytest .
+	pipenv run python -m pytest $(opt) .
 
